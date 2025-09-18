@@ -19,7 +19,7 @@ char type_data_input()
 		else
 		{
 			throw "Error! Incorrect input!!!";
-		}
+		}//need fix problem with continie working prog
 		return type_of_reading;
 	}
 	catch (const char* error_massage)
@@ -71,8 +71,8 @@ int main()
 	sellection_of_parameters(n, q, w);
 	//init arr
 	std::vector<int> arr;
-	std::cout << n << ", " << q << ", " << w << ",\n";//debug
-	std::cout << "You generated array\n";
+	std::cout <<"n - "<< n << ", q - " << q << ", w - " << w << "\n";//debug
+	std::cout << "You generated array:\n";
 	if (type_of_reading =='1')//for rand
 	{
 		for (int i = 0; i < n; i++)
