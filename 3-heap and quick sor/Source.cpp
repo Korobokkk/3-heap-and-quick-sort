@@ -19,12 +19,13 @@ char type_data_input()
 		else
 		{
 			throw "Error! Incorrect input!!!";
-		}//need fix problem with continie working prog
+		}
 		return type_of_reading;
 	}
 	catch (const char* error_massage)
 	{
 		std::cout << error_massage;
+		std::exit(1);
 	}
 	return type_of_reading;
 }
@@ -39,14 +40,14 @@ void sellection_of_parameters(int &n, int &q, int &w)
 			throw "incorrect 'n'.'n' must be greater than 1.\n";
 		}
 
-		std::cout << "Sellect 'q'. *(This is the minimum value of the element in array)\n";
+		std::cout << "Sellect 'q'. *(This is the min value of the element in array)\n";
 		std::cin >> q;
 		if (q < 1)
 		{
 			throw "incorrect 'q'.'q' must be greater or equal than 1.\n";
 		}
 
-		std::cout << "Sellect 'w'. *(This is the minimum value of the element)\n";
+		std::cout << "Sellect 'w'. *(This is the max value of the element)\n";
 		std::cin >> w;
 		if (w <= q)
 		{
@@ -56,6 +57,7 @@ void sellection_of_parameters(int &n, int &q, int &w)
 	catch (const char* error_massage)
 	{
 		std::cout << error_massage;
+		std::exit(1);
 	}
 }
 void filling_an_array()
