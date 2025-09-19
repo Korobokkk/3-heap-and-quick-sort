@@ -60,19 +60,50 @@ void sellection_of_parameters(int &n, int &q, int &w)
 		std::exit(1);
 	}
 }
+void pseudo_random(int tmp, int &q, int &w)
+{
+	return;
+}
+void ascending_generation(int tmp,int& q, int& w)
+{
+	q = tmp;
+	return;
+}
+void descending_generation(int tmp, int& q, int& w)
+{
+	w = tmp;
+	return;
+}
+
+
 void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q, int w)//
 {
-	std::cout << "n - " << n << ", q - " << q << ", w - " << w << "\n\n" << "Select an array generation method:\n    1.-Pseudo-random generation\n    2- Ascending generation\n    3- Descending generation\n";//debug
-	int choose;
-	std::cin >> choose;
-	if (choose < 1 || choose>3)
-	{
-		std::cout << "Incorrect input num!!!";
-		std::exit(1);
-	}
-	std::cout << "You generated array:\n";
+	
 	if (type_of_reading == '1')//for rand
 	{
+
+		std::cout << "n - " << n << ", q - " << q << ", w - " << w << "\n\n" << "Select an array generation method:\n    1.-Pseudo-random generation\n    2- Ascending generation\n    3- Descending generation\n";//debug
+		int choose;
+		std::cin >> choose;
+		void (*function_selection)(int, int&, int&) {};
+		if (choose < 1 || choose>3)
+		{
+			std::cout << "Incorrect input num!!!";
+			std::exit(1);
+		}
+		else if (choose == 1)
+		{
+			function_selection = pseudo_random;
+		}
+		else if (choose == 2)
+		{
+			function_selection = ascending_generation;
+		}
+		else {
+			function_selection = descending_generation;
+		}
+
+		std::cout << "You generated array:\n";		
 		for (int i = 0; i < n; i++)
 		{
 			int tmp = std::rand() % (w-q+1) + q;
@@ -82,14 +113,7 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 			{
 				std::cout << "\n";
 			}
-			if (choose == 2)//многократный вызов.нужен фикс
-			{
-				q = tmp;
-			}
-			else if (choose == 3)
-			{
-				w = tmp;
-			}
+			function_selection(tmp, q, w);
 		}
 
 	}
