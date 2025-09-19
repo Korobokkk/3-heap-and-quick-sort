@@ -60,9 +60,43 @@ void sellection_of_parameters(int &n, int &q, int &w)
 		std::exit(1);
 	}
 }
-void filling_an_array()
+void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q, int w)//
 {
-	//in progress
+	std::cout << "n - " << n << ", q - " << q << ", w - " << w << "\n\n" << "Select an array generation method:\n    1.-Pseudo-random generation\n    2- Ascending generation\n    3- Descending generation\n";//debug
+	int choose;
+	std::cin >> choose;
+	if (choose < 1 || choose>3)
+	{
+		std::cout << "Incorrect input num!!!";
+		std::exit(1);
+	}
+	std::cout << "You generated array:\n";
+	if (type_of_reading == '1')//for rand
+	{
+		for (int i = 0; i < n; i++)
+		{
+			int tmp = std::rand() % (w-q+1) + q;
+			arr.push_back(tmp);
+			std::cout << tmp << " ";
+			if (i % 10 == 9)
+			{
+				std::cout << "\n";
+			}
+			if (choose == 2)//многократный вызов.нужен фикс
+			{
+				q = tmp;
+			}
+			else if (choose == 3)
+			{
+				w = tmp;
+			}
+		}
+
+	}
+	else//for .exe file
+	{
+		//need write
+	}
 }
 
 
@@ -71,28 +105,13 @@ int main()
 	char type_of_reading = type_data_input();
 	int n, q, w;
 	sellection_of_parameters(n, q, w);
+	
 	//init arr
 	std::vector<int> arr;
-	std::cout <<"n - "<< n << ", q - " << q << ", w - " << w << "\n";//debug
-	std::cout << "You generated array:\n";
-	if (type_of_reading =='1')//for rand
-	{
-		for (int i = 0; i < n; i++)
-		{
-			int tmp = std::rand()%w+q;
-			arr.push_back(tmp);
-			std::cout << tmp<< " ";
-			if (i % 10 == 9)
-			{
-				std::cout << "\n";
-			}
-		}
-
-	}
-	else//for .exe file
-	{
-
-	}
+	filling_an_array(arr, type_of_reading, n, q, w);
+	
+	
+	
 			
 	// work with arr
 	// work with arr 2
