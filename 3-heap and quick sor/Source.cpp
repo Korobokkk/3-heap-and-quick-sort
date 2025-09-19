@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <chrono>
 char type_data_input()
 {
 	char type_of_reading;
@@ -35,7 +36,7 @@ void sellection_of_parameters(int &n, int &q, int &w)
 	{
 		std::cout << "Sellect n. *(This is the number of elements in array)\n";
 		std::cin >> n;
-		if (n < 2 )
+		if (n < 1 )
 		{
 			throw "incorrect 'n'.'n' must be greater than 1.\n";
 		}
@@ -49,7 +50,7 @@ void sellection_of_parameters(int &n, int &q, int &w)
 
 		std::cout << "Sellect 'w'. *(This is the max value of the element)\n";
 		std::cin >> w;
-		if (w <= q)
+		if (w < q)
 		{
 			throw "incorrect 'w'.'w' must be greater or equal than 'q'.\n";
 		}
@@ -115,14 +116,36 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 			}
 			function_selection(tmp, q, w);
 		}
-
+		std::cout << std::endl;
 	}
 	else//for .exe file
 	{
 		//need write
 	}
 }
+void  quick_sort(std::vector<int>& arr)
+{
+	std::vector<int> arr_copy(arr);
+	auto wall_start = std::chrono::high_resolution_clock::now();
+	if (arr_copy.size() < 1)
+	{
+		std::cout << " Array size < 1";
+	}
+	else if (arr_copy.size() == 1)
+	{
+		auto wall_stop = std::chrono::high_resolution_clock::now();
+		auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+		
+		std::cout << "Result:\n" << arr_copy[0];
+		std::cout<< std::endl << "Time Quicksort: " << wall_time << "\n";
+		return;
+	}
 
+	
+
+	auto wall_stop = std::chrono::high_resolution_clock::now();
+	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+}
 
 int main()
 {
@@ -134,10 +157,10 @@ int main()
 	std::vector<int> arr;
 	filling_an_array(arr, type_of_reading, n, q, w);
 	
-	
-	
-			
 	// work with arr
+	quick_sort(arr);
+	
+
 	// work with arr 2
 	// output arr and time sorting
 
