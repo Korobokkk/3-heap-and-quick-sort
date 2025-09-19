@@ -123,28 +123,21 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 		//need write
 	}
 }
-void  quick_sort(std::vector<int>& arr)
+std::vector<int> quick_sort(std::vector<int>& arr)
 {
-	std::vector<int> arr_copy(arr);
-	auto wall_start = std::chrono::high_resolution_clock::now();
-	if (arr_copy.size() < 1)
+	
+	if (arr.size() < 1)
 	{
 		std::cout << " Array size < 1";
-	}
-	else if (arr_copy.size() == 1)
+	}//maybe need delete
+	else if (arr.size() == 1)
 	{
-		auto wall_stop = std::chrono::high_resolution_clock::now();
-		auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-		
-		std::cout << "Result:\n" << arr_copy[0];
-		std::cout<< std::endl << "Time Quicksort: " << wall_time << "\n";
 		return;
 	}
-
-	
-
-	auto wall_stop = std::chrono::high_resolution_clock::now();
-	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+	int midle = arr.size() / 2;
+	std::vector<int> left_arr(midle+1);
+	std::vector<int> right_arr(midle);
+	//continue:	
 }
 
 int main()
@@ -158,8 +151,16 @@ int main()
 	filling_an_array(arr, type_of_reading, n, q, w);
 	
 	// work with arr
-	quick_sort(arr);
-	
+	auto wall_start = std::chrono::high_resolution_clock::now();
+	std::vector<int> quick_sort_res (quick_sort(arr));
+	std::cout << "Result:\n" << arr[0];
+	auto wall_stop = std::chrono::high_resolution_clock::now();
+	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+	std::cout << std::endl << "Time Quicksort: " << wall_time << "\n";
+
+
+
+
 
 	// work with arr 2
 	// output arr and time sorting
