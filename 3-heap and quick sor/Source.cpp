@@ -79,7 +79,7 @@ void descending_generation(int tmp, int& q, int& w)
 
 void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q, int w)//
 {
-	
+	srand((unsigned int)time(NULL));
 	if (type_of_reading == '1')//for rand
 	{
 
@@ -123,21 +123,42 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 		//need write
 	}
 }
-std::vector<int> quick_sort(std::vector<int>& arr)
+std::vector<int> quick_sort(std::vector<int> arr)
 {
-	
-	if (arr.size() < 1)
+	//
+	//if (arr.size() < 1)
+	//{
+	//	std::cout << "Error. Array size < 1";
+	//}//maybe need delete
+	if (arr.size() <= 1)
 	{
-		std::cout << " Array size < 1";
-	}//maybe need delete
-	else if (arr.size() == 1)
-	{
-		return;
+		//std::cout <<"res" <<arr[0]<< std::endl;
+		return arr;
 	}
-	int midle = arr.size() / 2;
-	std::vector<int> left_arr(midle+1);
-	std::vector<int> right_arr(midle);
-	//continue:	
+
+	std::vector<int> less_or_equal_than;
+	std::vector<int> more_than;
+	
+	int index_last_elem = (int)arr.size() - 1;
+
+	for (int i = 0; i < index_last_elem; i++)
+	{
+		if (arr[i] <= arr[index_last_elem])
+		{
+			less_or_equal_than.push_back(arr[i]);
+		}
+		else
+		{
+			more_than.push_back(arr[i]);
+		}
+	}
+	std::vector<int> less(quick_sort(less_or_equal_than));
+	std::vector<int> more(quick_sort(more_than));
+	
+	less.push_back(arr[index_last_elem]);
+	std::copy(more.begin(), more.end(),std::back_inserter(less));
+
+	return less;
 }
 
 int main()
@@ -150,18 +171,29 @@ int main()
 	std::vector<int> arr;
 	filling_an_array(arr, type_of_reading, n, q, w);
 	
-	// work with arr
+	//work with arr
+
+	/*make void choose_sort!!!!!!!!!!!!!!!!!!!*/
 	auto wall_start = std::chrono::high_resolution_clock::now();
 	std::vector<int> quick_sort_res (quick_sort(arr));
-	std::cout << "Result:\n" << arr[0];
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+	
+	std::cout << "Result:\n";
+	int tmp=0;
+	/*make void check_result_sort!!!!!!!!!!!!!*/
+	for (int x : quick_sort_res)
+	{
+		std::cout << x << " ";
+		tmp++;
+		if (tmp % 10 == 0)
+		{
+			std::cout << std::endl;
+		}
+	}
+	std::cout << std::endl;
 	std::cout << std::endl << "Time Quicksort: " << wall_time << "\n";
-
-
-
-
-
+	
 	// work with arr 2
 	// output arr and time sorting
 
