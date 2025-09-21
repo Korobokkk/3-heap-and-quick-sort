@@ -123,16 +123,11 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 		//need write
 	}
 }
+
 std::vector<int> quick_sort(std::vector<int> arr)
 {
-	//
-	//if (arr.size() < 1)
-	//{
-	//	std::cout << "Error. Array size < 1";
-	//}//maybe need delete
 	if (arr.size() <= 1)
 	{
-		//std::cout <<"res" <<arr[0]<< std::endl;
 		return arr;
 	}
 
@@ -160,6 +155,55 @@ std::vector<int> quick_sort(std::vector<int> arr)
 
 	return less;
 }
+std::vector<int> three_heap_sort(std::vector<int> arr)
+{
+	// код
+	return arr;// другой return
+}
+
+bool sort_selection(std::vector<int> arr)
+{
+	char select;
+	std::cout << "Sorting selection:\n    1-for Quicksort\n    2-for 3-heap sort\n    3-for exit\n";
+	std::cin >> select;
+	std::vector<int>(*select_sort)(std::vector<int> arr);
+
+	if (select == '1')
+	{
+		select_sort = quick_sort;
+	}
+	else if(select == '2')
+	{
+		select_sort = three_heap_sort;
+	}
+	else
+	{
+		std::cout << "Exit Complete\n";
+		return false;
+	}
+
+	auto wall_start = std::chrono::high_resolution_clock::now();
+	std::vector<int> sort_res(select_sort(arr));
+	auto wall_stop = std::chrono::high_resolution_clock::now();
+	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+
+	std::cout << "Result:\n";
+	int tmp = 0;
+	/*make void check_result_sort!!!!!!!!!!!!!*/
+	for (int x : sort_res)
+	{
+		std::cout << x << " ";
+		tmp++;
+		if (tmp % 10 == 0)
+		{
+			std::cout << std::endl;
+		}
+	}
+	std::cout << std::endl;
+	std::cout << std::endl << "Time Quicksort: " << wall_time << "\n";
+	return true;
+}
+
 
 int main()
 {
@@ -172,27 +216,12 @@ int main()
 	filling_an_array(arr, type_of_reading, n, q, w);
 	
 	//work with arr
-
-	/*make void choose_sort!!!!!!!!!!!!!!!!!!!*/
-	auto wall_start = std::chrono::high_resolution_clock::now();
-	std::vector<int> quick_sort_res (quick_sort(arr));
-	auto wall_stop = std::chrono::high_resolution_clock::now();
-	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-	
-	std::cout << "Result:\n";
-	int tmp=0;
-	/*make void check_result_sort!!!!!!!!!!!!!*/
-	for (int x : quick_sort_res)
+	while (sort_selection(arr))
 	{
-		std::cout << x << " ";
-		tmp++;
-		if (tmp % 10 == 0)
-		{
-			std::cout << std::endl;
-		}
 	}
-	std::cout << std::endl;
-	std::cout << std::endl << "Time Quicksort: " << wall_time << "\n";
+	
+	/*make void choose_sort!!!!!!!!!!!!!!!!!!!*/
+	
 	
 	// work with arr 2
 	// output arr and time sorting
