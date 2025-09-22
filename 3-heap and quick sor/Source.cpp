@@ -175,7 +175,7 @@ void shift_down(std::vector<int>& arr, int i, int n)
 		for (int k = 1; k <= 3; k++)
 		{
 			int tmp = child(i, k);
-			if (tmp < n && arr[index_max_child] < arr[tmp])//will be no crash because the first condition is checked earlier
+			if (tmp < n && arr[index_max_child] < arr[tmp])
 			{
 				index_max_child = tmp;
 			}
@@ -199,13 +199,30 @@ std::vector<int> three_heap_sort(std::vector<int> arr, int n)//added n in input 
 	{
 		shift_down(arr, i, n);
 	}
-	//return arr;// другой return
 
 	for (int i = n - 1; i > 0; i--) {
 		std::swap(arr[0], arr[i]);    // Перемещаем максимум в конец
 		shift_down(arr, 0, i);
 	}
 	return arr;
+}
+
+
+void out_array_sort_res(std::vector<int> arr)
+{
+	std::cout << "Result:\n";
+	int cout_counter = 0;
+	for (int x : arr)
+	{
+		std::cout << x << " ";
+		cout_counter++;
+		if (cout_counter % 10 == 0)
+		{
+			std::cout << std::endl;
+		}
+	}
+	std::cout << std::endl;
+
 }
 
 bool sort_selection(std::vector<int> arr,int n)
@@ -234,22 +251,14 @@ bool sort_selection(std::vector<int> arr,int n)
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
 	
-	
-	
-	std::cout << "Result:\n";
-	int cout_counter = 0;
-	/*make void check_result_sort!!!!!!!!!!!!!*/
-	for (int x : sort_res)
+	bool see_result;
+	std::cout << "Do you want to see the sorted array?\n";
+	std::cin >> see_result;
+	if (see_result)
 	{
-		std::cout << x << " ";
-		cout_counter++;
-		if (cout_counter % 10 == 0)
-		{
-			std::cout << std::endl;
-		}
+		out_array_sort_res(sort_res);
 	}
-	std::cout << std::endl;
-	std::cout << std::endl << "Time Quicksort: " << wall_time << "\n";
+	std::cout <<  "Time Quicksort: " << wall_time << "\n";
 	return true;
 }
 
@@ -268,10 +277,5 @@ int main()
 	while (sort_selection(arr, n))
 	{
 	}
-
-	
-	// work with arr 2
-	// output arr and time sorting
-
 	return 0;
 }
