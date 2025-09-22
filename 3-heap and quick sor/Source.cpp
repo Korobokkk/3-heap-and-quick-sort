@@ -160,7 +160,7 @@ int parent(int i)
 {
 	return (i - 1) / 3;
 }
-int child(int i, int k)//k from [1, 2, 3] maybe[1,2] or [1] or zero args
+int child(int i, int k)//k from [1, 2, 3] maybe[1,]
 {
 	return 3 * i + k;
 }
@@ -182,8 +182,9 @@ void shift_down(std::vector<int> arr, int i, int n)
 		{
 			break;
 		}
+		std::swap(arr[i], arr[index_max_child]);
+		i = index_max_child;
 	}
-	std::swap(arr[i], arr[index_max_child]);
 	return;
 }
 
