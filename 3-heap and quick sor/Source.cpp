@@ -124,7 +124,7 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 	}
 }
 
-std::vector<int> quick_sort(std::vector<int> arr)
+std::vector<int> quick_sort(std::vector<int> arr, int n)
 {
 	if (arr.size() <= 1)
 	{
@@ -134,7 +134,7 @@ std::vector<int> quick_sort(std::vector<int> arr)
 	std::vector<int> less_or_equal_than;
 	std::vector<int> more_than;
 	
-	int index_last_elem = (int)arr.size() - 1;
+	int index_last_elem = arr.size() - 1;
 
 	for (int i = 0; i < index_last_elem; i++)
 	{
@@ -147,14 +147,16 @@ std::vector<int> quick_sort(std::vector<int> arr)
 			more_than.push_back(arr[i]);
 		}
 	}
-	std::vector<int> less(quick_sort(less_or_equal_than));
-	std::vector<int> more(quick_sort(more_than));
+	std::vector<int> less(quick_sort(less_or_equal_than, n));
+	std::vector<int> more(quick_sort(more_than, n));
 	
 	less.push_back(arr[index_last_elem]);
 	std::copy(more.begin(), more.end(),std::back_inserter(less));
 
 	return less;//need refuct with create vector
 }
+
+// 3-heapsort function
 
 int parent(int i)
 {
@@ -165,15 +167,15 @@ int child(int i, int k)//k from [1, 2, 3] maybe[1,]
 	return 3 * i + k;
 }
 
-void shift_down(std::vector<int> arr, int i, int n)
+void shift_down(std::vector<int>& arr, int i, int n)
 {
-	int index_max_child = child(i, 0);
+	int index_max_child = i;
 	while (true)
 	{
-		for (int k = 1; k < 3; k++)
+		for (int k = 1; k <= 3; k++)
 		{
 			int tmp = child(i, k);
-			if (tmp > n && arr[index_max_child] < arr[tmp])//will be no crash because the first condition is checked earlier
+			if (tmp < n && arr[index_max_child] < arr[tmp])//will be no crash because the first condition is checked earlier
 			{
 				index_max_child = tmp;
 			}
@@ -188,21 +190,30 @@ void shift_down(std::vector<int> arr, int i, int n)
 	return;
 }
 
-std::vector<int> three_heap_sort(std::vector<int> arr)//added n in input args and in QuickSort 
+
+
+std::vector<int> three_heap_sort(std::vector<int> arr, int n)//added n in input args and in QuickSort 
 {
-	int n = (int)arr.size();//tmp
+	
+	for (int i = n-2 / 3; i >= 0; i--)
+	{
+		shift_down(arr, i, n);
+	}
+	//return arr;// другой return
 
-
-	// code
-	return arr;// другой return
+	for (int i = n - 1; i > 0; i--) {
+		std::swap(arr[0], arr[i]);    // Перемещаем максимум в конец
+		shift_down(arr, 0, i);
+	}
+	return arr;
 }
 
-bool sort_selection(std::vector<int> arr)
+bool sort_selection(std::vector<int> arr,int n)
 {
 	char select;
 	std::cout << "Sorting selection:\n    1-for Quicksort\n    2-for 3-heap sort\n    3-for exit\n";
 	std::cin >> select;
-	std::vector<int>(*select_sort)(std::vector<int> arr);
+	std::vector<int>(*select_sort)(std::vector<int> arr, int n);
 
 	if (select == '1')
 	{
@@ -219,10 +230,12 @@ bool sort_selection(std::vector<int> arr)
 	}
 
 	auto wall_start = std::chrono::high_resolution_clock::now();
-	std::vector<int> sort_res(select_sort(arr));
+	std::vector<int> sort_res(select_sort(arr, n));
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-
+	
+	
+	
 	std::cout << "Result:\n";
 	int cout_counter = 0;
 	/*make void check_result_sort!!!!!!!!!!!!!*/
@@ -252,7 +265,7 @@ int main()
 	filling_an_array(arr, type_of_reading, n, q, w);
 	
 	//work with arr
-	while (sort_selection(arr))
+	while (sort_selection(arr, n))
 	{
 	}
 
