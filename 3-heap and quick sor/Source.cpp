@@ -115,7 +115,7 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 			{
 				if (q == w)
 				{
-					for (i; i < n; ++i)//maybe shiza
+					for (i; i < n; ++i)
 					{
 						std::cout << q << " ";
 						arr.push_back(q);
@@ -137,7 +137,7 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 			{
 				if (w == q)
 				{
-					for (i; i >= 0; --i)//maybe shiza
+					for (i; i >= 0; --i)
 					{
 						std::cout << w << " ";
 						arr.push_back(w);
@@ -150,7 +150,7 @@ void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q
 					arr.push_back(w--);
 				}
 			}
-		}//NEED MORE REFACT!!!!!
+		}
 
 		std::cout << "\n";
 	}
@@ -350,7 +350,7 @@ bool sort_selection(std::vector<int> arr, int min_index_elemint, int n)
 	auto wall_start = std::chrono::high_resolution_clock::now();
 	std::vector<int> sort_res(select_sort(arr,0, n));
 	auto wall_stop = std::chrono::high_resolution_clock::now();
-	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+	auto wall_time = std::chrono::duration_cast<std::chrono::seconds>(wall_stop - wall_start).count();
 	
 	bool see_result;
 	std::cout << "Do you want to see the sorted array?\n    1-YES\n    0-NO\n";
