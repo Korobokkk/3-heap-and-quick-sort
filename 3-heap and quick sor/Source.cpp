@@ -317,10 +317,10 @@ void out_array_sort_res(std::vector<int> arr)
 		cout_counter++;
 		if (cout_counter % 10 == 0)
 		{
-			std::cout << std::endl;
+			std::cout << "\n";
 		}
 	}
-	std::cout << std::endl;
+	std::cout << "\n";
 
 }
 
@@ -366,6 +366,12 @@ bool sort_selection(std::vector<int> arr, int min_index_elemint, int n)
 
 int main()
 {
+	std::ios::sync_with_stdio(0);//disable sinc between c++ and c input/output 
+	std::cin.tie(nullptr);//disable sinc between clear cout/cin buffer
+	std::cout.tie(nullptr);
+
+
+
 	char type_of_reading = type_data_input();
 	int n, q, w;
 	sellection_of_parameters(n, q, w);
