@@ -15,11 +15,11 @@ public:
 	int Last_child(int i);
 	int Father(int i);
 	int Min_child(int i);
-	void Diving();//погружение
-	void Ascent();//всплытие
-	void Get_min();
+	void Diving(int i);//погружение
+	void Ascent(int i);//всплытие
+	void Get_min(int& min_key, int& min_elem_array);
 	void Form_a_quere();//образовать очередь
 	void Cout_array();
-	bool out_range(int i);
+	bool Out_range(int i);
 };
 

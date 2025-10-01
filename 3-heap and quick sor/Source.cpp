@@ -385,6 +385,12 @@ int main()
 	std::cout << "Min child = " << tmp.Min_child(4) << "\n";
 	std::cout << "Min child = " << tmp.Min_child(0) << "\n";
 
+	std::cout << "Diving [0] elem\n";
+	tmp.Diving(0);
+	tmp.Cout_array();
+
+
+
 	std::cout << "Quicksort\n";
 	quick_sort_v2(arr, 0, arr.size() - 1);
 
