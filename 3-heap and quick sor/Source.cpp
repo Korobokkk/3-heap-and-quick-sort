@@ -2,6 +2,8 @@
 #include <vector>
 #include <cstdlib>
 #include <chrono>
+#include "D_heap.h"
+
 char type_data_input()
 {
 	char type_of_reading;
@@ -61,21 +63,6 @@ void sellection_of_parameters(int &n, int &q, int &w)
 		std::exit(1);
 	}
 }
-void pseudo_random(int tmp, int &q, int &w)
-{
-	return;
-}
-void ascending_generation(int tmp,int& q, int& w)
-{
-	q = tmp;
-	return;
-}
-void descending_generation(int tmp, int& q, int& w)
-{
-	w = tmp;
-	return;
-}
-
 
 void filling_an_array( std::vector<int> &arr, char type_of_reading, int n, int q, int w)//
 {
@@ -379,7 +366,19 @@ int main()
 	std::vector<int> arr;
 	filling_an_array(arr, type_of_reading, n, q, w);
 	//test new quick_sort
-	std::cout << "sortings\n";
+
+	std::vector<int> copyarr(arr);//copy arr
+	
+	std::cout << "\n3-heap sort\n";
+	D_heap tmp(3, arr);
+	tmp.Cout_array();
+	//Check up child and father
+	std::cout << "First child = " << tmp.First_child(n) << " Last Child = " << tmp.Last_child(n) << " Father - " << tmp.Father(n) << "\n";
+	std::cout << "First child = " << tmp.First_child(n - 1) << " Last Child = " << tmp.Last_child(n - 1) << " Father - " << tmp.Father(n - 1) << "\n";
+	std::cout << "First child = " << tmp.First_child(3) << " Last Child = " << tmp.Last_child(3) << " Father - " << tmp.Father(3) << "\n";
+	std::cout << "First child = " << tmp.First_child(4) << " Last Child = " << tmp.Last_child(4) << " Father - " << tmp.Father(4) << "\n";
+	
+	std::cout << "Quicksort\n";
 	quick_sort_v2(arr, 0, arr.size() - 1);
 
 	std::cout << "You want to see the sorted array?\n    1-Yes\n    0-No\n";
