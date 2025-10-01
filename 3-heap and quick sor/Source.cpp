@@ -377,7 +377,14 @@ int main()
 	std::cout << "First child = " << tmp.First_child(n - 1) << " Last Child = " << tmp.Last_child(n - 1) << " Father - " << tmp.Father(n - 1) << "\n";
 	std::cout << "First child = " << tmp.First_child(3) << " Last Child = " << tmp.Last_child(3) << " Father - " << tmp.Father(3) << "\n";
 	std::cout << "First child = " << tmp.First_child(4) << " Last Child = " << tmp.Last_child(4) << " Father - " << tmp.Father(4) << "\n";
-	
+	std::cout << "First child = " << tmp.First_child(0) << " Last Child = " << tmp.Last_child(0) << " Father - " << tmp.Father(0) << "\n";
+
+	std::cout << "Min child = " << tmp.Min_child(n) << "\n";
+	std::cout << "Min child = " << tmp.Min_child(n-1) << "\n";
+	std::cout << "Min child = " << tmp.Min_child(3) << "\n";
+	std::cout << "Min child = " << tmp.Min_child(4) << "\n";
+	std::cout << "Min child = " << tmp.Min_child(0) << "\n";
+
 	std::cout << "Quicksort\n";
 	quick_sort_v2(arr, 0, arr.size() - 1);
 
