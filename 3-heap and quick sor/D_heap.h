@@ -9,6 +9,7 @@ private:
 	std::vector<int> array;
 	int n=0;
 	std::vector<int> key;
+	std::vector<int> result_array;
 public:
 	D_heap(int d, std::vector<int>& arr);
 	int First_child(int i);
@@ -17,9 +18,11 @@ public:
 	int Min_child(int i);
 	void Diving(int i);//погружение
 	void Ascent(int i);//всплытие
-	void Get_min(int& min_key, int& min_elem_array);
+	void Get_min();
 	void Form_a_quere();//образовать очередь
 	void Cout_array();
 	bool Out_range(int i);
+	void Sort_D();
+	void Cout_result_sorting_array();
 };
 

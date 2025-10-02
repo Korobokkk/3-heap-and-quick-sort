@@ -59,7 +59,7 @@ int D_heap::Father(int i)
 		return -1;
 	}
 
-	return (i - 1) / 3;
+	return (i - 1) / d;
 }
 
 int D_heap::Min_child(int i)
@@ -86,15 +86,16 @@ void D_heap::Diving(int i)
 	int diving_key = key[i];
 	int diving_el_array = array[i];
 	int c = Min_child(i);
-	while (c != i && key[i] > key[c])
+	while (c != i && diving_key > key[c])
 	{
 		key[i] = key[c];
 		array[i] = array[c];
+		
 		i = c;
 		c = Min_child(i);
 	}
-	key[c] = diving_key;
-	array[c] = diving_el_array;
+	key[i] = diving_key;
+	array[i] = diving_el_array;
 }
 
 void D_heap::Ascent(int i)
@@ -105,29 +106,34 @@ void D_heap::Ascent(int i)
 	while (p != 0 && key[i]<key[p])
 	{
 		key[i] = key[p];
-		array[i] = key[p];
+		array[i] = array[p];
 		i = p;
 		p = Father(i);
 	}
-	key[p] = ascent_key;
-	array[p] = ascent_key;
+	key[i] = ascent_key;
+	array[i] = ascent_array;
 }
 
-void D_heap::Get_min(int& min_key, int& min_el_array) {
-	min_key = key[0];
-	min_el_array = array[0];
+void D_heap::Get_min() {
+	 int min_key = key[0];
+	 int min_el_array = array[0];
 	key[0] = key[n - 1];
 	array[0] = array[n - 1];
+
+	key.pop_back();
+	array.pop_back();
+
 	n -= 1;
 	if (n > 1)
 	{
 		Diving(0);
 	}
+	result_array.push_back(min_el_array);
 }
 
 void D_heap::Form_a_quere()
 {
-	for (int i = n - 1; i >= 0; --i)
+	for (int i = n - 1; i >= 0; --i)//можно бустануть обращаясь только к родителям
 	{
 		Diving(i);
 	}
@@ -138,4 +144,35 @@ bool D_heap::Out_range(int i)
 	{
 		return false;
 	} 
+	return true;
 };
+void D_heap::Sort_D()
+{
+	Form_a_quere();
+	while (n > 0)
+	{
+		Get_min();
+	}
+	int tmp;
+	int index_replaced_elem;
+	int size = result_array.size();
+	/*for (int i = 0; i < size / 2; ++i)
+	{
+		index_replaced_elem = size - 1 - i;
+		tmp = result_array[i];
+		result_array[i] = result_array[index_replaced_elem];
+		result_array[index_replaced_elem] = tmp;
+	}*/ // не нужно, так как  массив уже дается отсортированным, я вставлял элементы в конец
+
+	Cout_result_sorting_array();
+}
+
+void D_heap::Cout_result_sorting_array()
+{
+	std::cout << "flag";
+	for (int i = 0; i < result_array.size(); ++i)
+	{
+		std::cout << result_array[i] << " ";
+	}
+	std::cout << "\n";
+}
