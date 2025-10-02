@@ -164,15 +164,15 @@ void D_heap::Sort_D()
 		result_array[index_replaced_elem] = tmp;
 	}*/ // не нужно, так как  массив уже дается отсортированным, я вставлял элементы в конец
 
-	Cout_result_sorting_array();
 }
 
 void D_heap::Cout_result_sorting_array()
 {
-	std::cout << "flag";
+	std::cout << d << "-Heap sort result\n";
 	for (int i = 0; i < result_array.size(); ++i)
 	{
 		std::cout << result_array[i] << " ";
 	}
 	std::cout << "\n";
+	
 }
