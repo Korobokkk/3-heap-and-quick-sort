@@ -1,6 +1,6 @@
 //#include "Experiment_A.cpp"
 #include "Basic_functions.h";
-#include "Experiment_A.h";
+#include "Experiments.h";
 
 void Sample()
 {
@@ -41,7 +41,7 @@ int main()
 	}
 	else if (type_experiment == 'b')
 	{
-
+		experiment_B();
 	}
 	else
 	{

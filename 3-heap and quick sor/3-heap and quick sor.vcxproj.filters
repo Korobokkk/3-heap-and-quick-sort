@@ -21,7 +21,7 @@
     <ClCompile Include="D_heap.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Experiment_A.cpp">
+    <ClCompile Include="Experiments.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Basic_functions.cpp">
@@ -35,7 +35,7 @@
     <ClInclude Include="Basic_functions.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Experiment_A.h">
+    <ClInclude Include="Experiments.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

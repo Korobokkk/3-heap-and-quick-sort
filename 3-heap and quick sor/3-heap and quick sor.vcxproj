@@ -130,12 +130,12 @@
     <ClCompile Include="Basic_functions.cpp" />
     <ClCompile Include="D_heap.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Experiment_A.cpp" />
+    <ClCompile Include="Experiments.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic_functions.h" />
     <ClInclude Include="D_heap.h" />
-    <ClInclude Include="Experiment_A.h" />
+    <ClInclude Include="Experiments.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
