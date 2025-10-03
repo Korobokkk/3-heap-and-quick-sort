@@ -41,23 +41,13 @@ int D_heap::Last_child(int i)
 	{
 		return -1;
 	}
-	else if ((index_child + d - 1) < n-1) {
+	if ((index_child + d - 1) < n-1) 
+	{
 		return index_child + d - 1;
 	}
 	else {
 		return n-1;
 	}
-	
-	/*else if (index_child + 2 < n)
-	{
-		return index_child + 2;
-	}
-	else if (index_child + 1 < n)
-	{
-		return index_child + 1;
-	}*/
-
-	return index_child;
 }
 int D_heap::Father(int i)
 {
