@@ -41,14 +41,21 @@ int D_heap::Last_child(int i)
 	{
 		return -1;
 	}
-	else if (index_child + 2 < n)
+	else if ((index_child + d - 1) < n-1) {
+		return index_child + d - 1;
+	}
+	else {
+		return n-1;
+	}
+	
+	/*else if (index_child + 2 < n)
 	{
 		return index_child + 2;
 	}
 	else if (index_child + 1 < n)
 	{
 		return index_child + 1;
-	}
+	}*/
 
 	return index_child;
 }
@@ -156,13 +163,6 @@ void D_heap::Sort_D()
 	int tmp;
 	int index_replaced_elem;
 	int size = result_array.size();
-	/*for (int i = 0; i < size / 2; ++i)
-	{
-		index_replaced_elem = size - 1 - i;
-		tmp = result_array[i];
-		result_array[i] = result_array[index_replaced_elem];
-		result_array[index_replaced_elem] = tmp;
-	}*/ // не нужно, так как  массив уже дается отсортированным, я вставлял элементы в конец
 
 }
 

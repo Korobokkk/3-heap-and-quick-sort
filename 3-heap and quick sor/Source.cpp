@@ -4,8 +4,6 @@
 #include <chrono>
 #include "D_heap.h"
 
-#include <optional>
-
 char type_data_input()
 {
 	char type_of_reading;
@@ -194,7 +192,7 @@ void sortings(std::vector<int>& arr)
 	auto wall_start = std::chrono::high_resolution_clock::now();
 	quick_sort_v2(copy_arr, 0,copy_arr.size() - 1);
 	auto wall_stop = std::chrono::high_resolution_clock::now();
-	auto wall_time = std::chrono::duration_cast<std::chrono::seconds>(wall_stop - wall_start).count();
+	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
 	std::cout << "Time Quicksort - " << wall_time << " n = " << copy_arr.size() << "\n[Quicksort] You want to see the sorted array?\n    1-Yes\n    0-No\n";
 	bool flag;
 	std::cin >> flag;
