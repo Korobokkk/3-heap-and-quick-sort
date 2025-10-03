@@ -1,13 +1,21 @@
-#include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <chrono>
-
-#include "D_heap.h"
-#include "Experiment_A.cpp"
+//#include "Experiment_A.cpp"
 #include "Basic_functions.h";
+#include "Experiment_A.h";
+
+void Sample()
+{
+	char type_of_reading = type_data_input();
+	int n, q, w;
+	sellection_of_parameters(n, q, w);
+
+	//init arr
+	std::vector<int> arr;
+	filling_an_array(arr, type_of_reading, n, q, w);
+
+	sortings(arr);
 
 
+}
 
 int main()
 {
@@ -15,30 +23,21 @@ int main()
 	std::cin.tie(nullptr);//disable sinc between clear cout/cin buffer
 	std::cout.tie(nullptr);
 
-
-
-	char type_of_reading = type_data_input();
-	int n, q, w;
-	sellection_of_parameters(n, q, w);
-	
-	//init arr
-	std::vector<int> arr;
-	filling_an_array(arr, type_of_reading, n, q, w);
-
 	bool flag;
-	std::cout << "See sample sortings\n    1- Yes\n    2- No\n";
+	std::cout << "See sample sortings\n    1- Yes\n    0- No\n";
 	std::cin >> flag;
 	if (flag)
 	{
-		sortings(arr);
+		Sample();
 	}
-	
+
+
 	char type_experiment;
 	std::cout << "Enter the experiment type\n    a- for A\n    b- for B\n";
 	std::cin >> type_experiment;
 	if (type_experiment == 'a')
 	{
-
+		experiment_A();
 	}
 	else if (type_experiment == 'b')
 	{
@@ -48,6 +47,6 @@ int main()
 	{
 		std::cout << "Bruh... Choose 'a' or 'b'\n";
 	}
-
+	
 	return 0;
 }
