@@ -47,6 +47,6 @@ int main()
 	{
 		std::cout << "Bruh... Choose 'a' or 'b'\n";
 	}
-	
+
 	return 0;
 }

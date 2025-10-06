@@ -142,24 +142,23 @@ void filling_an_array(std::vector<int>& arr, char type_of_reading, int n, int q,
 int dividing(std::vector<int>& arr, int l, int r)
 {
 	int pivot = arr[(l + r) / (2)];
-	int i = l, j = r;
 
 	while (true)
 	{
-		while (arr[i] < pivot)
+		while (arr[l] < pivot)
 		{
-			++i;
+			++l;
 		}
-		while (arr[j] > pivot)
+		while (arr[r] > pivot)
 		{
-			--j;
+			--r;
 		}
-		if (i >= j)
+		if (l >= r)
 		{
-			return j;
+			return r;
 		}
-		std::swap(arr[i], arr[j]);
-		++i, --j;
+		std::swap(arr[l], arr[r]);
+		++l, --r;
 
 	}
 }

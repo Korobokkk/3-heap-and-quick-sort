@@ -130,7 +130,7 @@ void D_heap::Get_min() {
 
 void D_heap::Form_a_quere()
 {
-	for (int i = n - 1; i >= 0; --i)//можно бустануть обращаясь только к родителям
+	for (int i = (n - 2)/3; i >= 0; --i)//можно бустануть обращаясь только к родителям
 	{
 		Diving(i);
 	}
@@ -150,9 +150,6 @@ void D_heap::Sort_D()
 	{
 		Get_min();
 	}
-	int tmp;
-	int index_replaced_elem;
-	int size = result_array.size();
 
 }
 

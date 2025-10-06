@@ -3,7 +3,7 @@
 void experiment_filling_array(std::vector<int>& arr, int n, int q, int w, int type_generation_array)
 {
 	srand((unsigned int)time(NULL));
-	
+
 	if (type_generation_array < 1 || type_generation_array>3)
 	{
 		std::cout << "Incorrect input num!!!";
@@ -59,7 +59,7 @@ void experiment_filling_array(std::vector<int>& arr, int n, int q, int w, int ty
 	}
 }
 
-void quicksort_walkthrough_A(std::vector<int> arr,int n, int q, int w, int type_generation)
+void quicksort_walkthrough_A(std::vector<int> arr, int n, int q, int w, int type_generation)
 {
 	experiment_filling_array(arr, n, q, w, type_generation);
 
@@ -67,7 +67,7 @@ void quicksort_walkthrough_A(std::vector<int> arr,int n, int q, int w, int type_
 	quick_sort_v2(arr, 0, n - 1);
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-	
+
 	std::cout << n << "\t" << wall_time << "\n";
 }
 void d_heap_walkthrough_A(std::vector<int> arr, int n, int q, int w, int type_generation)
@@ -79,7 +79,7 @@ void d_heap_walkthrough_A(std::vector<int> arr, int n, int q, int w, int type_ge
 	tmp.Sort_D();
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-	
+
 	std::cout << n << "\t" << wall_time << "\n";
 }
 void experiment_A()
@@ -87,7 +87,7 @@ void experiment_A()
 
 	char type_of_reading = '1';
 	int n, q, w;
-	q = 1, w = 1000000000, n=1;
+	q = 1, w = 1000000000, n = 1;
 
 	for (int i = 1; i <= 3; i++)
 	{
