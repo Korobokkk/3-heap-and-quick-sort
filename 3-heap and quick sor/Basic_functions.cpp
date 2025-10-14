@@ -139,6 +139,39 @@ void filling_an_array(std::vector<int>& arr, char type_of_reading, int n, int q,
 	}
 }
 
+//standart Quicksirt
+int dividing_standart(std::vector<int>& arr, int l, int r)
+{
+	int pivot = arr[r];
+	int i = l - 1;  
+	for (int j = l; j <= r - 1; j++)
+	{
+		if (arr[j] <= pivot)
+		{
+			i++;  
+			std::swap(arr[i], arr[j]);
+		}
+	}
+	std::swap(arr[i + 1], arr[r]);
+	return i + 1;
+}
+void Cout_quick_sort_res_standart(std::vector<int>& arr)
+{
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		std::cout << arr[i] << " ";
+	}
+}
+void quick_sort_standart(std::vector<int>& arr, int l, int r)
+{
+	if (l < r)
+	{
+		int tmp = dividing_standart(arr, l, r);
+		quick_sort_standart(arr, l, tmp-1);
+		quick_sort_standart(arr, tmp + 1, r);
+	}
+}
+
 int dividing(std::vector<int>& arr, int l, int r)
 {
 	int pivot = arr[(l + r) / (2)];
@@ -175,7 +208,7 @@ void quick_sort_v2(std::vector<int>& arr, int l, int r)
 	if (l < r)
 	{
 		int tmp = dividing(arr, l, r);
-		quick_sort_v2(arr, l, tmp);
+		quick_sort_v2(arr, l, tmp-1);
 		quick_sort_v2(arr, tmp + 1, r);
 	}
 }
@@ -183,14 +216,30 @@ void quick_sort_v2(std::vector<int>& arr, int l, int r)
 
 void sortings(std::vector<int>& arr)
 {
-	std::cout << "Quicksort\n";
+	//quicksort baze
+	std::cout << "\nQuicksort_standart\n";
 	std::vector<int> copy_arr = arr;
 	auto wall_start = std::chrono::high_resolution_clock::now();
-	quick_sort_v2(copy_arr, 0, copy_arr.size() - 1);
+	quick_sort_standart(copy_arr, 0, copy_arr.size() - 1);
 	auto wall_stop = std::chrono::high_resolution_clock::now();
 	auto wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
-	std::cout << "Time Quicksort - " << wall_time << " n = " << copy_arr.size() << "\n[Quicksort] You want to see the sorted array?\n    1-Yes\n    0-No\n";
+	std::cout << "Time Quicksort_standart - " << wall_time << " n = " << copy_arr.size() << "\n[Quicksort_standart] You want to see the sorted array?\n    1-Yes\n    0-No\n\n";
 	bool flag;
+	std::cin >> flag;
+	if (flag)
+	{
+		Cout_quick_sort_res_standart(copy_arr);
+	}
+
+
+	//quicksort optimized
+	std::cout <<"\nQuicksort_optimized\n";
+	copy_arr = arr;
+	wall_start = std::chrono::high_resolution_clock::now();
+	quick_sort_v2(copy_arr, 0, copy_arr.size() - 1);
+	wall_stop = std::chrono::high_resolution_clock::now();
+	wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
+	std::cout << "Time Quicksort_optimized - " << wall_time << " n = " << copy_arr.size() << "\n[Quicksort_optimized] You want to see the sorted array?\n    1-Yes\n    0-No\n\n";
 	std::cin >> flag;
 	if (flag)
 	{
@@ -205,7 +254,7 @@ void sortings(std::vector<int>& arr)
 	wall_stop = std::chrono::high_resolution_clock::now();
 	wall_time = std::chrono::duration_cast<std::chrono::milliseconds>(wall_stop - wall_start).count();
 
-	std::cout << "Time D-heap sort - " << wall_time << " n = " << arr.size() << "\n[D-heap sort] You want to see the sorted array?\n    1-Yes\n    0-No\n";
+	std::cout << "Time D-heap sort - " << wall_time << " n = " << arr.size() << "\n[D-heap sort] You want to see the sorted array?\n    1-Yes\n    0-No\n\n";
 	std::cin >> flag;
 	if (flag)
 	{

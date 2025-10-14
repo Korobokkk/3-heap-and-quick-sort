@@ -10,6 +10,7 @@ void Sample()
 
 	//init arr
 	std::vector<int> arr;
+
 	filling_an_array(arr, type_of_reading, n, q, w);
 
 	sortings(arr);
